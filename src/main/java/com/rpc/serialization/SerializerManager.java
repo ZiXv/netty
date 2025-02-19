@@ -1,14 +1,13 @@
 package com.rpc.serialization;
 
 import com.rpc.protocol.constant.SerialType;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
 public class SerializerManager {
 
-    // 存储所有序列化器的映射 key: 序列化类型标识, value: 对应的序列化器实例
     private static final Map<Byte, ISerializer> serializerMap = new ConcurrentHashMap<>();
 
     static {

@@ -1,11 +1,16 @@
 package com.rpc.protocol;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RpcProtocol<T> implements Serializable {
-    private Header header;
-    private T content;
+    public Header header;
+    public T content;
+
 }

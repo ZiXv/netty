@@ -28,13 +28,14 @@ public class RpcEncoder  extends MessageToByteEncoder<RpcProtocol<Object>> {
      **/
     @Override
     protected void encode(ChannelHandlerContext ctx, RpcProtocol<Object> msg, ByteBuf byteBuf) throws Exception {
-        log.info("=============begin RpcEncoder============");
+        log.info("==== RpcEncoder encode() triggered. Pipeline: {}, Msg: {}", ctx.pipeline(), msg);
         Header header=msg.getHeader();
         byteBuf.writeShort(header.getMagic());
         byteBuf.writeByte(header.getVersion());
         byteBuf.writeByte(header.getSerialType());
         byteBuf.writeByte(header.getMsgType());
         byteBuf.writeLong(header.getMsgId());
+
         ISerializer serializer= SerializerManager.getSerializer(header.getSerialType());
         byte[] data=serializer.serialize(msg.getContent()); //序列化
         header.setLength(data.length);

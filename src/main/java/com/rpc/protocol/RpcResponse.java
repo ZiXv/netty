@@ -8,8 +8,8 @@ import java.util.Map;
 @Data
 public class RpcResponse implements Serializable {
 
-
     private Object data;
     private String msg;
     private Map<String, Object> attachments;
+
 }
